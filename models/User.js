@@ -51,11 +51,12 @@ User.init(
             }
         },
         phone_number: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT,
             allowNull: false,
             validate: {
                 // this means the password must be 10 characters long
-                len: [10,10]
+                min: 999999999,
+                isNumeric: true
             }
         }
     },
