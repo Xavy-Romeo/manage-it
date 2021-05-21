@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
         // if no id matches
         if (!dbUserData) {
             // send 404 user error
-            res.status(404).json({message: 'No user found with this id!'});
+            res.status(404).json({message: `No user found with id: ${req.params.id}!`});
             return;
         }
         res.json(dbUserData);
@@ -93,7 +93,7 @@ router.post('/login', (req, res) => {
 // Update a user
 router.put('/:id', (req, res) => {
     // update user with entered id
-    // expects: {username: 'user1', email: 'user1@gmail.com', password: 'Password1234'}
+    // expects: {username: 'User1', email: 'user1@gmail.com', password: 'Password1234'}
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -101,19 +101,21 @@ router.put('/:id', (req, res) => {
         }
     })
     .then(async() => {
+        // find post with requested id
         const id = await User.findOne({
             where: {
                 id: req.params.id
             }
         });
 
-        // if no matching id exists, send 404 user error
+        // if no matching requested id exists, send 404 user error
         if (!id) {
-            res.status(404).json({message: 'No user found with this id!'});
+            res.status(404).json({message: `No user found with id: ${req.params.id}!`});
             return;
         }
 
-        res.json({message: `Updated user with id ${req.params.id}!`, dbUserData: req.body});
+        // if user with requested id exists, then send updated response
+        res.json({message: `Updated user with id ${req.params.id}!`, user: req.body});
     })
     .catch(err => {
         console.log(err);
@@ -131,7 +133,7 @@ router.delete('/:id', (req, res) => {
     })
     .then(dbUserData => {
         if (!dbUserData) {
-            res.status(404).json({message: 'No user found with this id!'});
+            res.status(404).json({message: `No user found with id: ${req.params.id}!`});
             return;
         }
         res.json({message: `Deleted user with id ${req.params.id}!`});
