@@ -115,7 +115,10 @@ router.put('/:id', (req, res) => {
         }
 
         // if user with requested id exists, then send updated response
-        res.json({message: `Updated user with id ${req.params.id}!`, user: req.body});
+        res.json({
+            message: `Updated user with id ${req.params.id}!`, 
+            user: req.body
+        });
     })
     .catch(err => {
         console.log(err);
