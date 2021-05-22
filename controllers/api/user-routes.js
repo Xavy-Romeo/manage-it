@@ -113,11 +113,13 @@ router.put('/:id', (req, res) => {
             res.status(404).json({message: `No user found with id: ${req.params.id}!`});
             return;
         }
-
         // if user with requested id exists, then send updated response
         res.json({
             message: `Updated user with id ${req.params.id}!`, 
-            user: req.body
+            user: {
+                id: req.params.id,
+                update: req.body
+            }
         });
     })
     .catch(err => {

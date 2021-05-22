@@ -70,6 +70,7 @@ router.put('/:id', (req, res) => {
         }
     })
     .then(async() => {
+        // find checklist with requested id
         const id = await Checklist.findOne({
             where: {
                 id: req.params.id
@@ -81,16 +82,14 @@ router.put('/:id', (req, res) => {
             res.status(404).json({message: `No checklist found with id ${req.params.id}!`});
             return;
         }
-
         // if checklist with requested id exist then send updated response
         res.json({
             message: `Checklist with id: ${req.params.id} has been updated!`,
             checklist: {
-                id: parseInt(req.params.id),
+                id: req.params.id,
                 update: req.body
             }            
         });
-
     })
     .catch(err => {
         console.log(err);
