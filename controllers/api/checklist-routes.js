@@ -1,17 +1,30 @@
 const router = require('express').Router();
-const {Checklist, User} = require('../../models');
+const {Checklist, User, Task} = require('../../models');
 
 // get all checklists
 router.get('/', (req, res) => {
     Checklist.findAll({
         attributes: ['id', 'checklist_name', 'created_at', 'updated_at'],
-        // include name from User model
-        include: {
-            model: User,
-            attributes: ['name']
-        },
+        
         // order by most recent checklist
-        order: [['created_at', 'DESC']]
+        order: [['created_at', 'DESC']],
+        include: [
+            {
+                // include task model
+                model: Task,
+                attributes: ['name', 'completion', 'due_date', 'created_at', 'updated_at'],
+                // include name of User that created task
+                include: {
+                    model: User,
+                    attributes: ['name']
+                }
+            },
+            {
+                // include name from User model
+                model: User,
+                attributes: ['name']
+            }
+        ]    
     })
     .then(dbChecklistData => res.json(dbChecklistData))
     .catch(err => {
@@ -27,10 +40,23 @@ router.get('/:id', (req, res) => {
             id: req.params.id
         },
         attributes: ['id', 'checklist_name', 'created_at', 'updated_at'],
-        include: {
-            model: User,
-            attributes: ['name']
-        }
+        include: [
+            {
+                // include task model
+                model: Task,
+                attributes: ['name', 'completion', 'due_date', 'created_at', 'updated_at'],
+                // include name of User that created task
+                include: {
+                    model: User,
+                    attributes: ['name']
+                }
+            },
+            {
+                // include name from User model
+                model: User,
+                attributes: ['name']
+            }
+        ] 
     })
     .then(dbChecklistData => {
         // if no data found with requested checklist id, send 404 user error message

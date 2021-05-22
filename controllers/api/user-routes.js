@@ -44,12 +44,12 @@ router.get('/:id', (req, res) => {
 
 // Add a user
 router.post('/', (req, res) => {
-    // expects: {name: 'user1', email: 'user1@gmail.com', password: 'Password1234', phone_number: 9991234567}
+    // expects: {name: 'user1', email: 'user1@gmail.com', password: 'Password1234', phone_number: 8182224567}
     User.create({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        phone_number: req.body.phone_number
+        phone_number: `+1${req.body.phone_number}`
     })
     .then(dbUserData => res.json(dbUserData))
     .catch(err => {
