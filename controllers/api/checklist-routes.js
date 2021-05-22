@@ -75,16 +75,19 @@ router.get('/:id', (req, res) => {
 
 // create a checklist
 router.post('/', (req, res) => {
-    // expects {checklist_name: 'C_name', user_id: 1}
-    Checklist.create({
-        checklist_name: req.body.checklist_name,
-        user_id: req.body.user_id
-    })
-    .then(dbChecklistData => res.json(dbChecklistData))
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+    // check if session exists
+    if (req.session) {
+        // expects {checklist_name: 'C_name', user_id: 1}
+        Checklist.create({
+            checklist_name: req.body.checklist_name,
+            user_id: req.body.user_id
+        })
+        .then(dbChecklistData => res.json(dbChecklistData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    }
 });
 
 // update a checklist

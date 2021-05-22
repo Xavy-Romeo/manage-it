@@ -51,7 +51,17 @@ router.post('/', (req, res) => {
         password: req.body.password,
         phone_number: `+1${req.body.phone_number}`
     })
-    .then(dbUserData => res.json(dbUserData))
+    .then(dbUserData => {
+        // create session
+        req.session.save(() => {
+            // declare session variables
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
+
+            res.json({user: dbUserData, message: 'You are now logged in!'});
+        });
+    })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -82,12 +92,32 @@ router.post('/login', (req, res) => {
             return;
         }
 
-        res.json({user: dbUserData, message: 'You are now logged in!'});
+        // create session
+        req.session.save(() => {
+            // declare session variables
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
+
+            res.json({user: dbUserData, message: 'You are now logged in!'});
+        });
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
+});
+
+// User logout route
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    }
+    else {
+        res.status(404).end();
+    }
 });
 
 // Update a user
