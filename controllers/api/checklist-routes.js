@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {Checklist, User, Task} = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // get all checklists
 router.get('/', (req, res) => {
@@ -74,13 +75,13 @@ router.get('/:id', (req, res) => {
 });
 
 // create a checklist
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     // check if session exists
     if (req.session) {
         // expects {checklist_name: 'C_name', user_id: 1}
         Checklist.create({
             checklist_name: req.body.checklist_name,
-            user_id: req.body.user_id
+            user_id: req.session.user_id
         })
         .then(dbChecklistData => res.json(dbChecklistData))
         .catch(err => {
@@ -91,7 +92,7 @@ router.post('/', (req, res) => {
 });
 
 // update a checklist
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     // expects {checklist_name: 'Updated name'}
     Checklist.update(req.body, {
         where: {
@@ -127,7 +128,7 @@ router.put('/:id', (req, res) => {
 });
 
 // delete a checklist
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Checklist.destroy({
         where: {
             id: req.params.id
