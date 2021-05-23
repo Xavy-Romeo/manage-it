@@ -1,0 +1,321 @@
+/* background dark: #2E3559*/
+/* div background dark: #2E3468/
+/* container shadow color: #778ba5 */
+/* input background color:  #2E3559*/
+/* link color orange: #FF7612 */
+/* Manage-it "logo" font: font-family: 'Amita', cursive; */
+/* bright purple #991FF5 */
+
+
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+a {
+    color: #FF7612;
+}
+
+a:hover {
+    color: #991FF5;
+}
+
+body {
+    background-color: #2E3559;
+    height: 100vh;
+    width: auto;
+    font-family: 'Lato', sans-serif;
+    color:#FFFFFF;
+    letter-spacing: 1.5px;
+}
+/* ------------------ universal form styles ------------------  */
+textarea, button, input {
+    width: 100%;
+    margin: 10px 0;
+}
+
+textarea {
+    height: 5em;
+    border-radius: 5px;
+    border: 1px solid #666766;
+    background-color: #FFFFFF;
+}
+
+input {
+    height: 3em;
+    border-radius: 5px;
+    border: 1px solid #666766;;
+    background-color: #fff;
+}
+
+textarea:focus, input:focus {
+    outline: none !important;
+    border:1px solid #719ECE;
+    box-shadow: 0 0 5px #719ECE;
+}
+
+.login-btn, .signup-btn {
+    background-color: #991FF5;
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: #FF7612;
+}
+/* ------------------ END universal form styles ------------------  */
+/* ------------------ login and sign up page styles ------------------  */
+
+.welcome-container {
+    padding: 60px;
+    margin: 20% auto;
+    font-size: 2rem;
+}
+
+.welcome-container h2{
+    font-size: 3rem;
+    font-family: 'Amita', cursive;
+    letter-spacing: none;
+}
+
+.login-container, .signup-container {
+    width: 500px;
+    height: 700px;
+    padding: 60px;
+    margin: 10% auto;
+    background-color: #2E3468;
+    box-shadow: 0 0 10px #778ba5;
+    border-radius: 7px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+form button {
+    margin-top: 20%;
+}
+ /* login and sign up media queries */
+
+@media only screen and (max-width: 600px) {
+    .login-container, .signup-container {
+        width: 300px;
+        height: 400px;
+        padding: 30px;
+        margin: 5% auto;
+        background-color: #2E3468;
+        color: #FFFFFF;
+        box-shadow: 0 0 10px #778ba5;
+        border-radius: 7px;
+    }
+
+    textarea, button, input {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .signup-container input {
+        height: 2em;
+    }
+
+    form button {
+        margin-top: auto;
+    }
+}
+
+/* ------------------ login and sign up page styles ------------------  */
+
+/* -------------------- dashboard styles --------------------  */
+.dash {
+    height: 100vh;
+}
+/* sidebar styles */
+
+.side-bar {
+    background-color: #2E3468;
+    background-image: linear-gradient(rgba(46,53,89,0), rgba(46,53,89,.75));
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.side-bar-title {
+    font-family: 'Amita', cursive;;
+}
+
+.side-bar-content {
+    margin: 10px;
+    padding: 10px;
+}
+
+.new-list-btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.side-bar-list {
+    margin-top: 40px;
+    
+}
+.list-group {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.list-group-item {
+    background-color: #2E3468;
+    border-bottom: 1px solid #FF7612;
+    border-top: 1px solid #FF7612;
+}
+
+.user-name {
+    background-color: #FF7612;
+    border-radius: 30px;
+    padding: 10px 20px;
+}
+
+.logout {
+    padding: 40px 10px;;
+}
+
+/* end sidebar styles */
+
+/* main styles */
+
+.main {
+    background-color: #2E3468;
+    background-image: linear-gradient(rgba(46,53,89,0), rgba(46,53,89,.75));
+    /* box-shadow: 0 0 5px #778ba5; */
+    height: 95vh;
+}
+.main-header {
+    padding: 20px;
+    margin: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #FF7612;
+}
+
+.task-manage-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px auto;
+}
+
+.new-task, .clear-all, .reset-all {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+
+}
+
+.new-task p, .clear-all p, .reset-all p {
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+/* Style the list items */
+.task {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #848CBA;
+}
+
+
+  /* Set all odd list items to a different color (zebra-stripes) */
+.task:nth-child(odd) {
+    background: #AEB9F2;
+}
+  
+  /* Darker background-color on hover */
+.task:hover {
+    background: #991FF5;
+}
+  
+
+.complete-checkbox {
+	-webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+	border-radius: 20px;
+	display: inline-block;
+	position: relative;
+}
+
+.complete-checkbox :active, .complete-checkbox :checked:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.complete-checkbox :checked {
+	background-color: #e9ecee;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05)
+}
+
+.complete-checkbox:checked:after {
+	content: '\2714';
+	position: absolute;
+	top: -3px;
+	left: 2px;
+	color: #99a1a7;
+}
+
+.task-item p {
+    padding-top: 12px;
+}
+
+.delete-btn img {
+    border-radius: 20px;
+}
+
+.delete-btn img:hover {
+    background: #Be2d25;
+}
+
+/* modal styles */
+
+/* background dark: #2E3559*/
+/* div background dark: #2E3468/
+/* container shadow color: #778ba5 */
+/* input background color:  #2E3559*/
+/* link color orange: #FF7612 */
+/* Manage-it "logo" font: font-family: 'Amita', cursive; */
+/* bright purple #991FF5 */
+.date-modal-btn {
+    color: #FFFFFF;
+    font-family: 'Lato', sans-serif;
+    color:#FFFFFF;
+    border: .5px solid #FF7612;
+    border-radius: 5px;
+}
+
+.modal-content {
+    background-color: #2E3468;
+}
+
+.modal-footer button {
+    background-color: #FF7612;
+}
+
+.modal-footer button:hover {
+    background-color: #991FF5;
+}
