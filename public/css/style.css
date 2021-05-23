@@ -1,16 +1,30 @@
-/* background white: #F2F1F6 */
-/* div background off-white: #FFFFFF*/
+/* background dark: #2E3559*/
+/* div background dark: #2E3468/
 /* container shadow color: #778ba5 */
-/* input background color:  #F2F1F6*/
+/* input background color:  #2E3559*/
+/* link color orange: #FF7612 */
+/* Manage-it "logo" font: font-family: 'Amita', cursive; */
+/* bright purple #991FF5 */
+
 
 *, *:before, *:after {
     box-sizing: border-box;
   }
+a {
+    color: #FF7612;
+}
+
+a:hover {
+    color: #991FF5;
+}
 
 body {
-    background-color: #F2F1F6;
+    background-color: #2E3559;
     height: 100vh;
     width: auto;
+    font-family: 'Lato', sans-serif;
+    color:#FFFFFF;
+    letter-spacing: 1.5px;
 }
 /* ------------------ universal form styles ------------------  */
 textarea, button, input {
@@ -22,14 +36,14 @@ textarea {
     height: 5em;
     border-radius: 5px;
     border: 1px solid #666766;
-    background-color: #F2F1F6;
+    background-color: #FFFFFF;
 }
 
 input {
     height: 3em;
     border-radius: 5px;
     border: 1px solid #666766;;
-    background-color: #F2F1F6;
+    background-color: #fff;
 }
 
 textarea:focus, input:focus {
@@ -38,16 +52,16 @@ textarea:focus, input:focus {
     box-shadow: 0 0 5px #719ECE;
 }
 
-button {
-    background-color: #007AFE;
+.login-btn, .signup-btn {
+    background-color: #991FF5;
     color: #FFFFFF;
     padding: 10px;
     border-radius: 5px;
-
+    font-size: 20px;
 }
 
 button:hover {
-    background-color: #666766;
+    background-color: #FF7612;
 }
 /* ------------------ END universal form styles ------------------  */
 /* ------------------ login and sign up page styles ------------------  */
@@ -55,6 +69,13 @@ button:hover {
 .welcome-container {
     padding: 60px;
     margin: 20% auto;
+    font-size: 2rem;
+}
+
+.welcome-container h2{
+    font-size: 3rem;
+    font-family: 'Amita', cursive;
+    letter-spacing: none;
 }
 
 .login-container, .signup-container {
@@ -62,8 +83,7 @@ button:hover {
     height: 700px;
     padding: 60px;
     margin: 10% auto;
-    /* margin: 20px 100px auto auto; */
-    background-color: #FFFFFF;
+    background-color: #2E3468;
     box-shadow: 0 0 10px #778ba5;
     border-radius: 7px;
 }
@@ -84,8 +104,8 @@ form button {
         height: 400px;
         padding: 30px;
         margin: 5% auto;
-        /* margin: 20px 100px auto auto; */
-        background-color: #FFFFFF;
+        background-color: #2E3468;
+        color: #FFFFFF;
         box-shadow: 0 0 10px #778ba5;
         border-radius: 7px;
     }
@@ -113,12 +133,17 @@ form button {
 /* sidebar styles */
 
 .side-bar {
-    background-color: #FFFFFF;
+    background-color: #2E3468;
+    background-image: linear-gradient(rgba(46,53,89,0), rgba(46,53,89,.75));
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.side-bar-title {
+    font-family: 'Amita', cursive;;
 }
 
 .side-bar-content {
@@ -135,15 +160,23 @@ form button {
 
 .side-bar-list {
     margin-top: 40px;
+    
 }
 .list-group {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    
+}
+
+.list-group-item {
+    background-color: #2E3468;
+    border-bottom: 1px solid #FF7612;
+    border-top: 1px solid #FF7612;
 }
 
 .user-name {
-    background-color: #D2CBCB;
+    background-color: #FF7612;
     border-radius: 30px;
     padding: 10px 20px;
 }
@@ -154,20 +187,21 @@ form button {
 
 /* end sidebar styles */
 
-/* background white: #F2F1F6 */
-/* div background off-white: #FFFFFF*/
-/* container shadow color: #778ba5 */
-
 /* main styles */
 
 .main {
-    background-color: #F2F1F6;
-    box-shadow: 0 0 5px #778ba5;;
+    background-color: #2E3468;
+    background-image: linear-gradient(rgba(46,53,89,0), rgba(46,53,89,.75));
+    /* box-shadow: 0 0 5px #778ba5; */
     height: 95vh;
 }
 .main-header {
     padding: 20px;
     margin: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #FF7612;
 }
 
 .task-manage-bar {
@@ -200,17 +234,18 @@ form button {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    background-color: #848CBA;
 }
 
 
   /* Set all odd list items to a different color (zebra-stripes) */
 .task:nth-child(odd) {
-    background: #f9f9f9;
+    background: #AEB9F2;
 }
   
   /* Darker background-color on hover */
 .task:hover {
-    background: #ddd;
+    background: #991FF5;
 }
   
 
@@ -256,4 +291,31 @@ form button {
     background: #Be2d25;
 }
 
+/* modal styles */
 
+/* background dark: #2E3559*/
+/* div background dark: #2E3468/
+/* container shadow color: #778ba5 */
+/* input background color:  #2E3559*/
+/* link color orange: #FF7612 */
+/* Manage-it "logo" font: font-family: 'Amita', cursive; */
+/* bright purple #991FF5 */
+.date-modal-btn {
+    color: #FFFFFF;
+    font-family: 'Lato', sans-serif;
+    color:#FFFFFF;
+    border: .5px solid #FF7612;
+    border-radius: 5px;
+}
+
+.modal-content {
+    background-color: #2E3468;
+}
+
+.modal-footer button {
+    background-color: #FF7612;
+}
+
+.modal-footer button:hover {
+    background-color: #991FF5;
+}
