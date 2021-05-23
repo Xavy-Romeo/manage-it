@@ -1,0 +1,259 @@
+/* background white: #F2F1F6 */
+/* div background off-white: #FFFFFF*/
+/* container shadow color: #778ba5 */
+/* input background color:  #F2F1F6*/
+
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+body {
+    background-color: #F2F1F6;
+    height: 100vh;
+    width: auto;
+}
+/* ------------------ universal form styles ------------------  */
+textarea, button, input {
+    width: 100%;
+    margin: 10px 0;
+}
+
+textarea {
+    height: 5em;
+    border-radius: 5px;
+    border: 1px solid #666766;
+    background-color: #F2F1F6;
+}
+
+input {
+    height: 3em;
+    border-radius: 5px;
+    border: 1px solid #666766;;
+    background-color: #F2F1F6;
+}
+
+textarea:focus, input:focus {
+    outline: none !important;
+    border:1px solid #719ECE;
+    box-shadow: 0 0 5px #719ECE;
+}
+
+button {
+    background-color: #007AFE;
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+button:hover {
+    background-color: #666766;
+}
+/* ------------------ END universal form styles ------------------  */
+/* ------------------ login and sign up page styles ------------------  */
+
+.welcome-container {
+    padding: 60px;
+    margin: 20% auto;
+}
+
+.login-container, .signup-container {
+    width: 500px;
+    height: 700px;
+    padding: 60px;
+    margin: 10% auto;
+    /* margin: 20px 100px auto auto; */
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px #778ba5;
+    border-radius: 7px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+form button {
+    margin-top: 20%;
+}
+ /* login and sign up media queries */
+
+@media only screen and (max-width: 600px) {
+    .login-container, .signup-container {
+        width: 300px;
+        height: 400px;
+        padding: 30px;
+        margin: 5% auto;
+        /* margin: 20px 100px auto auto; */
+        background-color: #FFFFFF;
+        box-shadow: 0 0 10px #778ba5;
+        border-radius: 7px;
+    }
+
+    textarea, button, input {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .signup-container input {
+        height: 2em;
+    }
+
+    form button {
+        margin-top: auto;
+    }
+}
+
+/* ------------------ login and sign up page styles ------------------  */
+
+/* -------------------- dashboard styles --------------------  */
+.dash {
+    height: 100vh;
+}
+/* sidebar styles */
+
+.side-bar {
+    background-color: #FFFFFF;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.side-bar-content {
+    margin: 10px;
+    padding: 10px;
+}
+
+.new-list-btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.side-bar-list {
+    margin-top: 40px;
+}
+.list-group {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.user-name {
+    background-color: #D2CBCB;
+    border-radius: 30px;
+    padding: 10px 20px;
+}
+
+.logout {
+    padding: 40px 10px;;
+}
+
+/* end sidebar styles */
+
+/* background white: #F2F1F6 */
+/* div background off-white: #FFFFFF*/
+/* container shadow color: #778ba5 */
+
+/* main styles */
+
+.main {
+    background-color: #F2F1F6;
+    box-shadow: 0 0 5px #778ba5;;
+    height: 95vh;
+}
+.main-header {
+    padding: 20px;
+    margin: 20px;
+}
+
+.task-manage-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px auto;
+}
+
+.new-task, .clear-all, .reset-all {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+
+}
+
+.new-task p, .clear-all p, .reset-all p {
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+/* Style the list items */
+.task {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+
+  /* Set all odd list items to a different color (zebra-stripes) */
+.task:nth-child(odd) {
+    background: #f9f9f9;
+}
+  
+  /* Darker background-color on hover */
+.task:hover {
+    background: #ddd;
+}
+  
+
+.complete-checkbox {
+	-webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+	border-radius: 20px;
+	display: inline-block;
+	position: relative;
+}
+
+.complete-checkbox :active, .complete-checkbox :checked:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.complete-checkbox :checked {
+	background-color: #e9ecee;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05)
+}
+
+.complete-checkbox:checked:after {
+	content: '\2714';
+	position: absolute;
+	top: -3px;
+	left: 2px;
+	color: #99a1a7;
+}
+
+.task-item p {
+    padding-top: 12px;
+}
+
+.delete-btn img {
+    border-radius: 20px;
+}
+
+.delete-btn img:hover {
+    background: #Be2d25;
+}
+
+
