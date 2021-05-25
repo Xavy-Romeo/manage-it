@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
-const cron = require('node-cron')
-const sendMessage = require('../helpers/twilio')
+const cron = require('node-cron');
+const sendMessage = require('../helpers/twilio');
 
 class Task extends Model {
   scheduleReminder(min, hour, dayNum, month, dayOfWk, message, clientNumber) {
@@ -53,7 +53,7 @@ Task.init(
     },
     {
         sequelize,
-        timestamps: true,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'task'

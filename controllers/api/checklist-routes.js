@@ -13,12 +13,7 @@ router.get('/', (req, res) => {
             {
                 // include task model
                 model: Task,
-                attributes: ['name', 'completion', 'due_date', 'created_at', 'updated_at'],
-                // include name of User that created task
-                include: {
-                    model: User,
-                    attributes: ['name']
-                }
+                attributes: ['name', 'completion', 'due_date']
             },
             {
                 // include name from User model
@@ -45,12 +40,7 @@ router.get('/:id', (req, res) => {
             {
                 // include task model
                 model: Task,
-                attributes: ['name', 'completion', 'due_date', 'created_at', 'updated_at'],
-                // include name of User that created task
-                include: {
-                    model: User,
-                    attributes: ['name']
-                }
+                attributes: ['name', 'completion', 'due_date']
             },
             {
                 // include name from User model
