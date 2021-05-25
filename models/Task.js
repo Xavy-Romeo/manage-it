@@ -33,6 +33,14 @@ Task.init(
           type: DataTypes.TIME,
           allowNull: true,
           defaultValue: null
+      },
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'user',
+          key: 'id'
+        }
       }
     },
     {

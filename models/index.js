@@ -13,14 +13,26 @@ Checklist.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
+// User has many tasks
+User.hasMany(Task, {
+    foreignKey: 'user_id'
+});
+
 // Checklist has many tasks
 Checklist.hasMany(Task, {
     foreignKey: 'checklist_id'
 });
 
+// Task belongs to one user
+Task.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL'
+});
+
 // Task belongs to Checklist
 Task.belongsTo(Checklist, {
-    foreignKey: 'checklist_id'
+    foreignKey: 'checklist_id',
+    onDelete: 'SET NULL'
 });
 
 module.exports = {

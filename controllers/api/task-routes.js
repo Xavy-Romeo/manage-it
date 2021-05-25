@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {Task} = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // get all tasks
 router.get('/', (req, res) => {
@@ -34,22 +35,26 @@ router.get('/:id', (req, res) => {
 });
 
 // create a task
-router.post('/', (req, res) => {
-    // expects {checklist_id: 1, name: 'task name here', due_date: '5:00'}
-    Task.create({
-        checklist_id: req.body.checklist_id,
-        name: req.body.name,
-        due_date: req.body.due_date
-    })
-    .then(dbTaskData => res.json(dbTaskData))
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+router.post('/', withAuth, (req, res) => {
+    // check if session exists
+    if (req.session) {
+        // expects {checklist_id: 1, name: 'task name here', due_date: '5:00', user_id: 1}
+        Task.create({
+            checklist_id: req.body.checklist_id,
+            name: req.body.name,
+            due_date: req.body.due_date,
+            user_id: req.session.user_id
+        })
+        .then(dbTaskData => res.json(dbTaskData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    }
 });
 
 // update a task
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     // expects any combo that includes {name: 'Updated name', completion: true, due_date: '3:30'} 
     Task.update(
         // options that can be updated
@@ -93,7 +98,7 @@ router.put('/:id', (req, res) => {
 });
 
 // delete a task
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Task.destroy({
         where: {
             id: req.params.id
