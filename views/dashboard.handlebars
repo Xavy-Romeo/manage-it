@@ -1,0 +1,90 @@
+    <div class="container-fluid dash" id="home-dash-view">
+        <div class="row">
+            <div class="side-bar col-md-2">
+                <div class="side-bar-content">
+                    <h2 class="side-bar-title">Manage It</h1>
+                        <div class="new-list-btn">
+                            <div class="new-list-icon"><img src="./images/plus.svg" alt="plus-icon"></div>
+                            <h4>New List</h4>
+                        </div>
+                    <!-- checklist Lists for sidebar start -->
+                    <div class="side-bar-list">
+                        <ul class="list-group list-group-flush">
+                            <h3 class="user-name"> Joe's List</h3>
+                            <!-- list partial -->
+                            {{> checklist-info}}
+                            <!-- list partial -->
+                        </ul>
+                    </div>  
+                    <!-- checklist Lists partial for sidebar end -->
+                </div>
+                <h4 class="logout-wide"><a href="/logout">Logout</a></h4>
+            </div>
+            <div class="col-md-10">
+                <div class="main">
+                 <!-- start dashboard partial -->
+                  <!-- start dashboard partial -->
+                    <h2 class="main-header">List One</h2>
+                    <div class="task-manage-bar">
+                        <div class="clear-all">
+                            <img src="./images/minus.svg" alt="icon">
+                            <p>Clear All Tasks</p>
+                            </div>
+                        <div class="reset-all">
+                            <img src="./images/reset.svg" alt="icon">
+                            <p>Reset All Task</p>
+                            </div>
+                        </div>
+                        <div class="task-container container">
+
+                        {{> task-info}}
+
+                        </div>
+                        <div class="add-task-container">
+                            <form id="add-task">
+                                <h3>Add New</h3>
+                                <div class="modal-body">
+                                    <label for="task-input" class="col-form-label">Task:</label>
+                                    <input type="text" id="task-input">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn" id="save-changes-btn">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row logout-mobile">
+                            <div class="">
+                                <h4><a href="/logout">Logout</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+    <!-- Due Date Modal -->
+    <div class="modal fade" id="dueDateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Set the due date:</h5>
+                </button>
+            </div>
+            <form id="task-due-date" action="">
+                <div class="modal-body">
+                    <label for="date-input" class="col-form-label">Due Date:</label>
+                    <input type="date" id="date-input">
+                    <label for="time-input" class="col-form-label">Time Due:</label>
+                    <input type="time" id="time-input">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+
+  <script src="./javascript/login.js"></script>
