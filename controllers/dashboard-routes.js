@@ -13,7 +13,7 @@ router.get('/', withAuth, (req, res) => {
         include: [
             {
                 model: Task,
-                attributes: ['id', 'name', 'completion', 'due_date', 'created_at', 'updated_at'],
+                attributes: ['id', 'name', 'completion', 'due_date'],
                 include: {
                     model: User,
                     attributes: ['name']
@@ -29,8 +29,9 @@ router.get('/', withAuth, (req, res) => {
         // cron.schedule('* * * * *', () => {
         //     console.log('Make a call to twilio');
         // });
-
-        res.json(dbChecklistData)
+        const checklists = dbChecklistData.map(checklist => checklist.get({plain: true}));
+        res.render('dashboard', {checklists, loggedIn: true});
+        console.log(dbChecklistData);
     })
     .catch(err => {
         console.log(err);

@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 // get all checklists
 router.get('/', (req, res) => {
     Checklist.findAll({
-        attributes: ['id', 'checklist_name', 'created_at', 'updated_at'],
+        attributes: ['id', 'checklist_name'],
         
         // order by most recent checklist
         order: [['created_at', 'DESC']],
