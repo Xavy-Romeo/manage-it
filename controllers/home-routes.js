@@ -22,4 +22,16 @@ router.get('/sign-up', (req, res) => {
     res.render('sign-up');
 })
 
+// new checklist page
+router.get('/add-new', (req, res) => {
+
+    res.render('add-new');
+})
+
+// edit task page
+router.get('/edit-task', (req, res) => {
+
+    res.render('edit-task');
+})
+
 module.exports = router;

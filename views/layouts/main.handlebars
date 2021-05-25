@@ -13,28 +13,7 @@
 </head>
 <body>
     <!---------------- main template above this line ------------>
-    <div class="container-fluid dash">
-        <div class="row">
-            <div class="side-bar col-md-2">
-                <div class="side-bar-content">
-                    <h2 class="side-bar-title">Manage It</h1>
-                        <div class="new-list-btn">
-                            <div class="new-list-icon"><img src="./images/plus.svg" alt="plus-icon"></div>
-                            <h4>New List</h4>
-                        </div>
-                    <!-- checklist Lists for sidebar start -->
-                    <div class="side-bar-list">
-                        <ul class="list-group list-group-flush">
-                            <h3 class="user-name"> Joe's List</h3>
-                            <!-- list partial -->
-                            {{> checklist-info}}
-                            <!-- list partial -->
-                        </ul>
-                    </div>  
-                    <!-- checklist Lists partial for sidebar end -->
-                </div>
-                <h4 class="logout-wide"><a href="/logout">Logout</a></h4>
-            </div>
+    
             {{{ body }}}
 
     <!---------------- main template below this line ------------>

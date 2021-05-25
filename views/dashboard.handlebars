@@ -1,3 +1,25 @@
+    <div class="container-fluid dash" id="home-dash-view">
+        <div class="row">
+            <div class="side-bar col-md-2">
+                <div class="side-bar-content">
+                    <h2 class="side-bar-title">Manage It</h1>
+                        <div class="new-list-btn">
+                            <div class="new-list-icon"><img src="./images/plus.svg" alt="plus-icon"></div>
+                            <h4>New List</h4>
+                        </div>
+                    <!-- checklist Lists for sidebar start -->
+                    <div class="side-bar-list">
+                        <ul class="list-group list-group-flush">
+                            <h3 class="user-name"> Joe's List</h3>
+                            <!-- list partial -->
+                            {{> checklist-info}}
+                            <!-- list partial -->
+                        </ul>
+                    </div>  
+                    <!-- checklist Lists partial for sidebar end -->
+                </div>
+                <h4 class="logout-wide"><a href="/logout">Logout</a></h4>
+            </div>
             <div class="col-md-10">
                 <div class="main">
                  <!-- start dashboard partial -->
@@ -18,31 +40,9 @@
                             </div>
                         </div>
                         <div class="task-container container">
-                            <div class="row task">
-                                <div class="col-md-1 check">
-                                    <div class="radio">
-                                        <input type="checkbox" class="complete-checkbox">
-                                    </div>
-                                </div>
-                                <div class="due col-md-2">
-                                    <button type="button" class="btn btn-sm date-modal-btn" data-toggle="modal" data-target="#dueDateModal">
-                                            Due Date
-                                    </button>
-                                </div>
-                                <div class="col-md-6 task-item">
-                                     <p>this is the task item</p>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="edit-delete-div">
-                                        <div class="edit-btn">
-                                               <img src="./images/edit.svg" alt="edit button">
-                                        </div>
-                                        <div class="delete-btn">
-                                              <img src="./images/minus.svg" alt="delete button">
-                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                        {{> task-info}}
+
                         </div>
                         <div class="add-task-container">
                             <form id="add-task">
@@ -89,3 +89,6 @@
         </div>
         </div>
     </div>
+
+
+  <script src="./javascript/login.js"></script>
