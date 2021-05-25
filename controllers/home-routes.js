@@ -1,12 +1,6 @@
 const router = require('express').Router();
 const {User, Checklist, Task} = require('../models');
 
-// get all posts for homepage
-router.get('/', (req, res) => {
-    console.log(req.session);
-    res.render('dashboard');
-});
-
 // get login route if not logged in
 router.get('/login', (req, res) => {
     // if (req.session.loggedIn) {
@@ -21,6 +15,14 @@ router.get('/sign-up', (req, res) => {
 
     res.render('sign-up');
 })
+
+// get all posts for homepage/dashboard
+router.get('/', (req, res) => {
+    console.log(req.session);
+    res.render('dashboard');
+});
+
+
 
 // new checklist page
 router.get('/add-new', (req, res) => {
