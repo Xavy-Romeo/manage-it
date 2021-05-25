@@ -27,22 +27,58 @@
                         <ul class="list-group list-group-flush">
                             <h3 class="user-name"> Joe's List</h3>
                             <!-- list partial -->
-                            {{> checklist-info}}
+                            <li class="list-group-item">Check List 1</li>
+                            <li class="list-group-item">Check List 2</li>
+                            <li class="list-group-item">Check List 3</li>
+                            <li class="list-group-item">Check List 4</li>
+                            <li class="list-group-item">Check List 5</li>
                             <!-- list partial -->
                         </ul>
                     </div>  
                     <!-- checklist Lists partial for sidebar end -->
                 </div>
-                <h4 class="logout-wide"><a href="/logout">Logout</a></h4>
+                <h4 class="logout" ><a href="/logout">Logout</a></h4>
             </div>
-            {{{ body }}}
+            <div class="col-md-10">
+                <div class="main">
+                    <!-- start homeView partial -->
+                    <h2 class="main-header">List One</h2>
+                    <div class="task-manage-bar">
+                    <div class="task-container ">
+                        <form id="add-task">
+                            <h2>Add New Checklist</h2>
+                            <div class="modal-body">
+                                <label for="checklist-name" class="col-form-label">Checklist Name</label>
+                                <input type="text" id="checklist-name">
+                                <h4>Add Tasks</h4>
+                                <label for="task-input" class="col-form-label">Task</label>
+                                <input type="text" id="task-input">
+                                <label for="task-input" class="col-form-label">Task</label>
+                                <input type="text" id="task-input">
+                                <label for="task-input" class="col-form-label">Task</label>
+                                <input type="text" id="task-input">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" id="return-home-btn">Back to Home</button>
+                                <button type="submit" class="btn" id="save-changes-btn">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+                
+
 
     <!---------------- main template below this line ------------>
+    <script src="./javascript/add-new.js"></script>
     <script src="./javascript/dashboard.js"></script>
     <!------------------------------------------- Bootstrap Script ------------------------------------------->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
 </body>
 </html>
