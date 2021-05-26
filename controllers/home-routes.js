@@ -3,10 +3,10 @@ const {User, Checklist, Task} = require('../models');
 
 // get login route if not logged in
 router.get('/login', (req, res) => {
-    // if (req.session.loggedIn) {
-    //     res.redirect('/');
-    //     return;
-    // }
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
     res.render('login');
 });
 
@@ -19,6 +19,11 @@ router.get('/sign-up', (req, res) => {
 // get all posts for homepage/dashboard
 router.get('/', (req, res) => {
     console.log(req.session);
+    if (!req.session.loggedIn) {
+        res.redirect('/login');
+        return;
+    }
+
     res.render('dashboard');
 });
 
