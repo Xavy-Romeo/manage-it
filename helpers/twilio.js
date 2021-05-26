@@ -1,5 +1,6 @@
 var twilio = require('twilio');
 
+<<<<<<< HEAD
 require('dotenv').config();
 
 var accountSid = process.env.TWILIO_SID; // Your Account SID from www.twilio.com/console
