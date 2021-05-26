@@ -3,7 +3,8 @@ const {User, Checklist, Task} = require('../models');
 const withAuth = require('../utils/auth')
 
 // get all posts for homepage/dashboard
-router.get('/', (req, res) => {    
+router.get('/', withAuth, (req, res) => {    
+    
     Checklist.findAll({
         where: {
             // user_id: req.session.user_id

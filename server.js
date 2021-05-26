@@ -3,7 +3,8 @@ const express = require('express');
 const exphbs  = require('express-handlebars');
 const session = require('express-session');
 const path = require('path');
-const routes = require('./controllers')
+const routes = require('./controllers');
+const cors = require('cors');
 
 // instantiate the server
 const app = express();
@@ -41,6 +42,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // use routes
 app.use(routes);
+
+app.use(cors());
 
 // sync sequelize tables if true, then start server connection 
 sequelize.sync({force: false})

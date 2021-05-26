@@ -13,7 +13,9 @@
                     <div class="side-bar-list">
                         <ul class="list-group list-group-flush">
                             <h3 class="user-name"> 
-                                {{name}}'s Checklists
+                              
+                                {{checklists.[0].user.name}}'s Checklists
+                              
                             </h3>
                             {{#each checklists as |checklist|}}
                                 <!-- list partial -->
@@ -30,7 +32,7 @@
                 <div class="main">
                  <!-- start dashboard partial -->
                   <!-- start dashboard partial -->
-                    <h2 class="main-header">List One</h2>
+                    <h2 id="list-name-header" class="main-header"></h2>
                     <div class="task-manage-bar">
                         <div class="clear-all">
                             <img id="clear-all-btn" src="./images/minus.svg" alt="icon">
@@ -93,8 +95,7 @@
     </div>
 
 
-  <script src="/javascript/login.js"></script>
+  <script src="/javascript/fetch.js"></script>
   <script src="/javascript/new-list.js"></script>
   <script src="/javascript/clear-all-tasks.js"></script>
-  
-  <script src="./javascript/logout.js"></script>
+  <script src="/javascript/logout.js"></script>

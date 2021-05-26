@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {User, Checklist, Task} = require('../models');
 const withAuth = require('../utils/auth');
-const cron = require('node-cron')
+const cron = require('node-cron');
 
 // get dashboard page
 router.get('/', withAuth, (req, res) => {
@@ -30,8 +30,9 @@ router.get('/', withAuth, (req, res) => {
         //     console.log('Make a call to twilio');
         // });
         const checklists = dbChecklistData.map(checklist => checklist.get({plain: true}));
+        console.log(checklists);
         res.render('dashboard', {checklists, loggedIn: true});
-        console.log(dbChecklistData);
+        
     })
     .catch(err => {
         console.log(err);

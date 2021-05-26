@@ -1,4 +1,3 @@
-console.log('connected')
 const returnHomeBtn = document.querySelector("#return-home-btn");
 const taskForm = document.querySelector("#edit-task")
 
