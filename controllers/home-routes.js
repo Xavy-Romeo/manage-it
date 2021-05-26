@@ -7,8 +7,8 @@ router.get('/', withAuth, (req, res) => {
     
     Checklist.findAll({
         where: {
-            // user_id: req.session.user_id
-            user_id: 5
+            user_id: req.session.user_id
+            // user_id: 5
         },
         attributes: ['id', 'checklist_name', 'user_id'],
         include: [
