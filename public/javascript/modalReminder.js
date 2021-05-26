@@ -1,3 +1,18 @@
+//let mostRecentTask = '';
+
+// function getTaskData () {
+//     console.log('get task data summoned')
+//     document.query
+// }
+
+$('.date-modal-btn').click(function(e) {
+    console.log('get task data summoned')
+
+    var mostRecentTask = $(this)  //.closest('.task-item').html();
+
+    console.log(mostRecentTask)
+})
+
 async function sendReminderRequest(event) {
     event.preventDefault();
     
@@ -20,6 +35,6 @@ async function sendReminderRequest(event) {
     
 }
 
-console.log('modalReminder loaded')
 
+//document.querySelector('.date-modal-btn').addEventListener('click', getTaskData)
 document.querySelector('.modal-form').addEventListener('submit', sendReminderRequest)
