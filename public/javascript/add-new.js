@@ -1,22 +1,68 @@
-console.log('connected')
+// grab buttons with the following ids
 const returnHomeBtn = document.querySelector("#return-home-btn");
 const taskForm = document.querySelector("#add-task")
+// grab values for following ids
+const listName = document.querySelector('input[name="checklist-name"]').value;
+const taskName1 = document.querySelector('input[name="task-input1"]').value;
+const taskName2 = document.querySelector('input[name="task-input2"]').value;
+const taskName3 = document.querySelector('input[name="task-input3"]').value;
 
-// write function to redirect them to home
-function routeHome() {
-    // testing event listener
-    console.log(`back to home clicked`);
-}
+// route home function
+const routeHome = () => {
+    // redirect to homepage
+    document.location.replace('/');
+};
 
-// write function to save changes to task
-function saveTaskChanges(event) {
+// add checklist function
+async function addChecklist(event) {
     event.preventDefault();
+    
     // testing event listener
-    console.log(`task changes clicked`)
-}
+    console.log(`task changes clicked`);
 
+    // add post logic here
 
+    
+    
+    // if (!taskName1) {
+    //     taskName1 = '';
+    // }
+    
+    // if (!taskName2) {
+    //     taskname2 = '';
+    // }
 
+    // if (!taskName3) {
+    //     taskname3 = '';
+    // }
 
-taskForm.addEventListener('submit', saveTaskChanges)
-returnHomeBtn.addEventListener("click", routeHome)
+    const checklist_name = listName;
+
+    const checklist = await fetch('/api/checklists', {
+        method: 'POST',
+        body: JSON.stringify({
+            checklist_name
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (taskName1 || taskName2 || taskName3) {
+        addTaskHandler();
+    }
+    else {
+        if (checklist.ok) {
+            document.location.replace('/');
+        }
+        else {
+            alert(response.statusText);
+        }
+    }
+};
+
+// async 
+
+// event listeners
+taskForm.addEventListener('submit', addChecklist);
+returnHomeBtn.addEventListener("click", routeHome);

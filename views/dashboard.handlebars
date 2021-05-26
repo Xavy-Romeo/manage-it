@@ -4,13 +4,17 @@
                 <div class="side-bar-content">
                     <h2 class="side-bar-title">Manage It</h1>
                         <div class="new-list-btn">
-                            <div class="new-list-icon"><img src="./images/plus.svg" alt="plus-icon"></div>
+                            <div class="new-list-icon">
+                                <img id="new-list-btn" src="./images/plus.svg" alt="plus-icon">
+                            </div>
                             <h4>New List</h4>
                         </div>
                     <!-- checklist Lists for sidebar start -->
                     <div class="side-bar-list">
                         <ul class="list-group list-group-flush">
-                            <h3 class="user-name"> Joe's List</h3>
+                            <h3 class="user-name"> 
+                                {{name}}'s Checklists
+                            </h3>
                             {{#each checklists as |checklist|}}
                                 <!-- list partial -->
                                 {{> checklist-info checklist}}
@@ -44,13 +48,13 @@
                         </div>
                         <div class="add-task-container">
                             <form id="add-task">
-                                <h3>Add New</h3>
+                                <h3>Add New Task</h3>
                                 <div class="modal-body">
                                     <label for="task-input" class="col-form-label">Task:</label>
                                     <input type="text" id="task-input">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn" id="save-changes-btn">Save changes</button>
+                                    <button type="submit" class="btn" id="save-changes-btn">Add Task</button>
                                 </div>
                             </form>
                         </div>
@@ -90,4 +94,6 @@
 
 
   <script src="/javascript/login.js"></script>
+  <script src="/javascript/new-list.js"></script>
   <script src="/javascript/clear-all-tasks.js"></script>
+  

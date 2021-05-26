@@ -9,7 +9,9 @@
                                             Due Date</button>
     </div>
     <div class="col-md-6 task-item">
-        <p>this is the task item</p>
+        {{#each task}}
+            <p>this is the task item</p>
+        {{/each}}
     </div>
     <div class="col-md-2">
         <div class="edit-delete-div">

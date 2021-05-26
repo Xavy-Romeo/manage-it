@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3333;
 
 // sequelize connection
 const sequelize = require('./config/connection');
-const { route } = require('./controllers');
+// const { route } = require('./controllers');
 // setup store
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 

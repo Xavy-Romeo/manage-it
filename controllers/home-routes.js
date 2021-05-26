@@ -3,11 +3,12 @@ const {User, Checklist, Task} = require('../models');
 const withAuth = require('../utils/auth')
 
 // get all posts for homepage/dashboard
-router.get('/', (req, res) => {
+router.get('/', (req, res) => {    
     Checklist.findAll({
-        // where: {
-        //     user_id: req.session.user_id
-        // },
+        where: {
+            // user_id: req.session.user_id
+            user_id: 5
+        },
         attributes: ['id', 'checklist_name', 'user_id'],
         include: [
             {
@@ -27,7 +28,7 @@ router.get('/', (req, res) => {
         
         // serialize data before passing to template
         const checklists = dbChecklistData.map(checklist => checklist.get({plain: true}));
-        res.render('dashboard', {checklists, loggedIn: true});
+        res.render('dashboard', {checklists, loggedIn: req.session.loggedIn});
     })
     .catch(err => {
         console.log(err);
@@ -37,10 +38,10 @@ router.get('/', (req, res) => {
 
 // get login route if not logged in
 router.get('/login', (req, res) => {
-    // if (req.session.loggedIn) {
-    //     res.redirect('/');
-    //     return;
-    // }
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
     res.render('login');
 });
 
