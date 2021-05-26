@@ -67,23 +67,34 @@
         <div class="modal-dialog" role="document">
          <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Set the due date:</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Set a reminder:</h5>
                 </button>
             </div>
-            <form id="task-due-date" action="">
+            <form id="task-due-date" action="" class="modal-form">
                 <div class="modal-body">
-                    <label for="date-input" class="col-form-label">Due Date:</label>
-                    <input type="date" id="date-input">
+                    <label for="date-input" class="col-form-label">Remind Me:</label>
+                    <input type="date" id="date-input" name="date-input">
                     <label for="time-input" class="col-form-label">Time Due:</label>
-                    <input type="time" id="time-input">
+                    <input type="time" id="time-input" name="time-input">
+                    <!-- Timezone -->
+                    <label for="timezone">Choose your timezone:</label>
+                    <select name="timezone" id="timezone" form="carform">
+                        <option value="America/Los_Angeles">PST</option>
+                        <option value="America/Denver">MST</option>
+                        <option value="America/Chicago">CST</option>
+                        <option value="America/New_York">EST</option>
+                    </select>
+                    <label for="phone">Enter your phone number:</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="8004445555">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Send Reminder</button>
                 </div>
             </form>
         </div>
         </div>
     </div>
 
+  <script src="./javascript/modalReminder.js"></script>
   <script src="./javascript/logout.js"></script>
