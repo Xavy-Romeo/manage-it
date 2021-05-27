@@ -3,12 +3,12 @@ const {Checklist, User, Task} = require('../../models');
 
 // use root/api/reminders/
 
-router.post('/:id', (req,res) => {
+router.post('/', (req,res) => {
     // Query Operation
     // expects {email: 'lernantino@gmail.com', password: 'password1234'}
     Task.findOne({
         where: {
-            id: req.params.id
+            id: 1
         }
     }) .then(dbTaskData => {
         if (!dbTaskData) {
@@ -20,11 +20,11 @@ router.post('/:id', (req,res) => {
         let hourTest = req.body.hour;
         let dayNumTest = req.body.dayNum;
         let monthTest = req.body.month;
-        let dayOfWkTest = req.body.dayOfWk;
-        let message = req.body.message;
+        let messageTest = req.body.message;
         let clientNumber = req.body.clientNumber;
+        let timezone = req.body.timezone;
 
-        dbTaskData.scheduleReminder(minTest, hourTest, dayNumTest, monthTest, dayOfWkTest, message, clientNumber)
+        dbTaskData.scheduleReminder(minTest, hourTest, dayNumTest, monthTest, messageTest, clientNumber, timezone)
         console.log(dbTaskData);
 
         res.json({ message: 'You got to the end of the POST route!'});
