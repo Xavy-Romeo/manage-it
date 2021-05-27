@@ -5,8 +5,8 @@ const cron = require('node-cron');
 const sendMessage = require('../helpers/twilio');
 
 class Task extends Model {
-  scheduleReminder(min, hour, dayNum, month, dayOfWk, message, clientNumber) {
-    let cronString= min + ' ' + hour + ' ' + dayNum + ' ' + month + ' ' + dayOfWk
+  scheduleReminder(min, hour, dayNum, month, message, clientNumber, timezone) {
+    let cronString= min + ' ' + hour + ' ' + dayNum + ' ' + month + ' ' + '*'
     let twilioMessage = message;
     let twilioClientNum = clientNumber
 
@@ -15,7 +15,7 @@ class Task extends Model {
       sendMessage(twilioMessage, twilioClientNum)
     }, {
       scheduled: true,
-      timezone: "America/Los_Angeles"   
+      timezone: timezone 
     });
   }
 }
