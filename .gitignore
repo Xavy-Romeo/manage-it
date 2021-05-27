@@ -1,3 +1,9 @@
 .env
 node_modules
 .DS_Store
+test.html
+add-new.html
+dashboard.html
+edit-task.html
+login.html
+signup.html
