@@ -195,7 +195,7 @@ const editTaskHandler = event => {
     const idArr = target.split('d');
     const taskId = idArr[1];
 
-    document.location.replace(`/edit-task?${taskId}`);
+    document.location.replace(`/edit-task?id=${taskId}`);
 };
 
 const rmvTaskHandler = () => {  
