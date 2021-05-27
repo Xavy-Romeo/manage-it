@@ -182,7 +182,16 @@ form button {
 }
 
 .logout-wide {
-    padding: 40px 10px;;
+    margin-bottom: 25px;
+    background-color: #FF7612;
+    font-variant: small-caps;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.logout-wide:hover {
+    background-color: #991FF5;
+    
 }
 
 /* end sidebar styles */
