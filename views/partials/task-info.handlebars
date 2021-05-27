@@ -1,29 +1,49 @@
-<div class="row task">
+{{#each task}}
+{{!-- <div class="row task">
+    
     <div class="col-md-1 check">
         <div class="radio">
              <input type="checkbox" class="complete-checkbox">
         </div>
      </div>
+    
     <div class="due col-md-2">
       <button type="button" class="btn btn-sm date-modal-btn" data-toggle="modal" data-target="#dueDateModal">
                                             Due Date</button>
     </div>
+    
     <div class="col-md-6 task-item">
-        {{#each task}}
+        
             <p>this is the task item</p>
-        {{/each}}
+        
     </div>
+    
+
+
+
+
+
+
+
+
     <div class="col-md-2">
+        
         <div class="edit-delete-div">
+            
             <div class="edit-btn">
                  <img id="task-edit-btn" src="./images/edit.svg" alt="edit button">
             </div>
+            
             <div class="delete-btn">
                 <img id="task-delete-btn" src="./images/minus.svg" alt="delete button">
             </div>
+
         </div>
+    
     </div>
-</div>
+
+</div> --}}
+{{/each}}
 
 <script src="/javascript/edit-tasks.js"></script>
 <script src="/javascript/remove-task.js"></script>

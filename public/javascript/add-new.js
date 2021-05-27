@@ -62,7 +62,7 @@ async function addChecklist(event) {
     // if checklist post request successful
     if (checklistOk) {
         // if task values are not all left null
-        if(taskName1 != null || taskName2 != null || taskName3 != null) {
+        if (taskName1.value !== '' || taskName2.value !== '' || taskName3.value !== '') {
             // call addTaskHandle function and pass in taskValues array
             addTaskHandler(listId, taskValues);
         }
@@ -79,7 +79,7 @@ async function addChecklist(event) {
 };
 
 // addTaskHandler function takes in task array
-async function addTaskHandler(taskValues) {
+async function addTaskHandler(listId, taskValues) {
     // check value of task 1
     if (taskValues[0].value !== '') {
         // add task to checklist via post request
