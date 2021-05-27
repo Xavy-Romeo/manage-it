@@ -3,6 +3,8 @@ const taskContainerEl = document.querySelector('.task-container');
 const taskItemEl = document.querySelector('task-item');
 const listGroup = document.querySelector('.list-group');
 const addTaskBtn = document.querySelector('#add-new-task-btn');
+const delAllTasksBtn = document.querySelector('#clear-all-btn');
+const unckAllTasksBtn = document.querySelector('#reset-tasks-btn');
 
 // declaring global variables
 let id = '';
@@ -220,7 +222,6 @@ const addTaskHandler = () => {
         })
         .then(checklistData => {
             id = checklistData[0].id;
-            console.log(checklistData);
         })
         .catch(err => {
             console.log(err);
@@ -248,11 +249,55 @@ const addTaskHandler = () => {
     
 };
 
-const f = () => {
+const delAllTasksHandler = () => {
+    if (id === '') {
+        const checklistApiUrl = 'http://localhost:3333/api/checklists/';
 
-}
+        // fetch checklist data
+        fetch(checklistApiUrl)
+        .then(checklistData => {
+            // return data in json format
+            return checklistData.json();
+        })
+        .then(checklistData => {
+            id = checklistData[0].id;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
 
+    setTimeout(() => {
+        const checklistApiUrl = `http://localhost:3333/api/checklists/${id}`;
+        fetch(checklistApiUrl)
+        .then(checklistData => {
+            return checklistData.json();
+        })
+        .then(checklistData => {
+            for (let i = 0; i < checklistData.tasks.length; i++) {
+                fetch(`/api/tasks/${checklistData.tasks[i].id}`, {
+                    method: 'DELETE'
+                });
+            }
 
+            setTimeout(() => {
+                location.reload();
+            }, 100);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }, 50);
+    
+};
+
+const unckAllTasksHandler = () => {
+    const allCheckboxes = document.querySelectorAll('.complete-checkbox');
+
+    for (let i = 0; i < allCheckboxes.length; i++) {
+        allCheckboxes[i].checked = false;
+    }
+};
 
 
 
@@ -268,3 +313,5 @@ fetchChecklists();
 
 listGroup.addEventListener('click', grabId);
 addTaskBtn.addEventListener('click', addTaskHandler);
+unckAllTasksBtn.addEventListener('click', unckAllTasksHandler);
+delAllTasksBtn.addEventListener('click', delAllTasksHandler);
