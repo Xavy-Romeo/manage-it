@@ -166,19 +166,33 @@ form button {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
+    list-style: none;
 }
 
 .list-group-item {
     background-color: #2E3468;
     border-bottom: 1px solid #FF7612;
     border-top: 1px solid #FF7612;
+    width: 10vw;
+    margin: 10px 10px;
+    word-wrap: break-word;
+    border-radius: 30px;
 }
+
+
+
+.list-group-item:hover {
+    background-color: #991FF5;
+
+}
+
+
 
 .user-name {
     background-color: #FF7612;
     border-radius: 30px;
     padding: 10px 20px;
+    text-align: center;
 }
 
 .logout-wide {
@@ -187,6 +201,7 @@ form button {
     font-variant: small-caps;
     font-weight: 700;
     font-size: 1.5rem;
+    width: 10vw;
 }
 
 .logout-wide:hover {
@@ -373,8 +388,46 @@ form button {
 
 
 /* sidebar and dashboard media queries */
+@media only screen and (max-width: 1200px) {
+    .new-list-btn {
+        display: flex;
+        flex-direction: column;
+    }
 
-@media only screen and (max-width: 600px) {
+
+}
+
+@media only screen and (max-width: 800px) {
+    .new-list-btn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .list-group {
+        display: grid;
+        width: 80vw;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .list-group-item {
+        width: 40vw;
+        border: none;
+    }
+
+    .logout-wide {
+        display: none;
+    }
+
+    .logout-mobile {
+        display: block;
+        padding: 20px;
+        margin: 50px;
+        text-align: center;
+    }
+}
+
+
+@media only screen and (max-width: 700px) {
     .side-bar {
         height: 100%;
         display: flex;
@@ -421,5 +474,28 @@ form button {
         top: -20px;
         left: 2px;
         color: #5b6165;
+    }
+    .list-group {
+        display: grid;
+        width: 80vw;
+        grid-template-columns: 1fr 1fr;
+    } 
+
+    .list-group-item {
+        width: 40vw;
+        border: none;
+    }
+
+    .new-list-btn {
+        display: flex;
+        flex-direction: column;
+        background-color: #2E3468;
+    }
+    
+    
+    
+    .list-group-item:hover {
+        background-color: #991FF5;
+        border-radius: 10px;
     }
 }
