@@ -38,12 +38,11 @@ router.get('/:id', (req, res) => {
 router.post('/', withAuth, (req, res) => {
     // check if session exists
     if (req.session) {
-        // expects {checklist_id: 1, name: 'task name here', due_date: '5:00', user_id: 1}
+        // expects {checklist_id: 1, name: 'task name here', due_date: '5:00'}
         Task.create({
             checklist_id: req.body.checklist_id,
             name: req.body.name,
-            due_date: req.body.due_date,
-            user_id: req.session.user_id
+            due_date: req.body.due_date
         })
         .then(dbTaskData => res.json(dbTaskData))
         .catch(err => {

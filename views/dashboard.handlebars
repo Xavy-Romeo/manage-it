@@ -4,16 +4,24 @@
                 <div class="side-bar-content">
                     <h2 class="side-bar-title">Manage It</h1>
                         <div class="new-list-btn">
-                            <div class="new-list-icon"><img src="./images/plus.svg" alt="plus-icon"></div>
+                            <div class="new-list-icon">
+                                <img id="new-list-btn" src="./images/plus.svg" alt="plus-icon">
+                            </div>
                             <h4>New List</h4>
                         </div>
                     <!-- checklist Lists for sidebar start -->
                     <div class="side-bar-list">
                         <ul class="list-group list-group-flush">
-                            <h3 class="user-name"> Joe's List</h3>
-                            <!-- list partial -->
-                            {{> checklist-info}}
-                            <!-- list partial -->
+                            <h3 class="user-name"> 
+                              
+                                {{checklists.[0].user.name}}'s Checklists
+                              
+                            </h3>
+                            {{#each checklists as |checklist|}}
+                                <!-- list partial -->
+                                {{> checklist-info checklist}}
+                                <!-- list partial -->
+                            {{/each}}
                         </ul>
                     </div>  
                     <!-- checklist Lists partial for sidebar end -->
@@ -24,31 +32,33 @@
                 <div class="main">
                  <!-- start dashboard partial -->
                   <!-- start dashboard partial -->
-                    <h2 class="main-header">List One</h2>
+                    <h2 id="list-name-header" class="main-header"></h2>
                     <div class="task-manage-bar">
                         <div class="clear-all">
-                            <img src="./images/minus.svg" alt="icon">
-                            <p>Clear All Tasks</p>
-                            </div>
+                            <img id="clear-all-btn" src="./images/minus.svg" alt="icon">
+                            <p>Delete All Tasks</p>
+                        </div>
                         <div class="reset-all">
-                            <img src="./images/reset.svg" alt="icon">
-                            <p>Reset All Task</p>
+                            <img id="reset-tasks-btn" src="./images/reset.svg" alt="icon">
+                            <p>Uncheck All Tasks</p>
                             </div>
                         </div>
-                        <div class="task-container container">
+                        <div class="container-holder">
+                            <div class="task-container container">
 
-                        {{> task-info}}
+                                {{> task-info}}
 
+                            </div>
                         </div>
                         <div class="add-task-container">
                             <form id="add-task">
-                                <h3>Add New</h3>
+                                <h3>Add New Task</h3>
                                 <div class="modal-body">
                                     <label for="task-input" class="col-form-label">Task:</label>
-                                    <input type="text" id="task-input">
+                                    <input type="text" id="new-task-input">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn" id="save-changes-btn">Save changes</button>
+                                    <button type="button" class="btn" id="add-new-task-btn">Add Task</button>
                                 </div>
                             </form>
                         </div>
@@ -96,5 +106,10 @@
         </div>
     </div>
 
-  <script src="./javascript/modalReminder.js"></script>
-  <script src="./javascript/logout.js"></script>
+<script src="/javascript/fetch.js"></script>
+<script src="/javascript/new-list.js"></script>
+{{!-- <script src="/javascript/clear-all-tasks.js"></script>
+<script src="/javascript/reset-tasks.js"></script> --}}
+<script src="/javascript/logout.js"></script>
+<script src="/javascript/modalReminder.js"></script>
+<script src="/javascript/logout.js"></script>

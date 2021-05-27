@@ -3,7 +3,8 @@ const express = require('express');
 const exphbs  = require('express-handlebars');
 const session = require('express-session');
 const path = require('path');
-const routes = require('./controllers')
+const routes = require('./controllers');
+const cors = require('cors');
 
 // instantiate the server
 const app = express();
@@ -12,7 +13,7 @@ const PORT = process.env.PORT || 3333;
 
 // sequelize connection
 const sequelize = require('./config/connection');
-const { route } = require('./controllers');
+// const { route } = require('./controllers');
 // setup store
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -41,6 +42,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // use routes
 app.use(routes);
+
+app.use(cors());
 
 // sync sequelize tables if true, then start server connection 
 sequelize.sync({force: false})
