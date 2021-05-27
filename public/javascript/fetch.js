@@ -2,9 +2,6 @@ const nameUser = document.querySelector('.user-name').textContent.trim();
 const taskContainerEl = document.querySelector('.task-container');
 const taskItemEl = document.querySelector('task-item');
 const listGroup = document.querySelector('.list-group');
-const addTaskBtn = document.querySelector('#add-new-task-btn');
-const delAllTasksBtn = document.querySelector('#clear-all-btn');
-const unckAllTasksBtn = document.querySelector('#reset-tasks-btn');
 
 // declaring global variables
 let id = '';
@@ -50,12 +47,49 @@ const fetchChecklists = () => {
                 }
             }
 
-            // store current checklist values
-            const checklistName = checklistData[0].checklist_name;  
+    
+            if (checklistArr.length !== 0) {
+                // store current checklist values
+                const checklistName = checklistArr[0].checklist_name;  
 
-            // call function and pass in data
-            displayChecklist(checklistName);
-            displayTasks(checklistData[0]);
+                // call function and pass in data
+                displayChecklist(checklistName);
+                displayTasks(checklistArr[0]);
+            }
+            else {
+                fetch('/api/checklists', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        checklist_name: 'Your First Checklist'
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                location.reload();
+            }
+
+
+
+
+            // fetch('/api/tasks', {
+            //     method: 'POST',
+            //     body: JSON.stringify({
+            //         checklist_id: id,
+            //         name: newTask.value
+            //     }),
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }
+            // });
+
+            // location.reload();
+
+
+
+
+
         })
         .catch(err => {
             console.log(err);
@@ -82,6 +116,10 @@ const fetchChecklists = () => {
         });
     }
 
+    setTimeout(() => {
+        const addTaskBtn = document.querySelector('#add-new-task-btn');
+        addTaskBtn.addEventListener('click', addTaskHandler);
+    }, 100);
 };
 
 const displayChecklist = checklistName => {
@@ -180,6 +218,13 @@ const displayTasks = (data) => {
         setTimeout(() => {
             const editTaskbtn = document.querySelectorAll('.task-edit-btn');
             const rmvTaskbtn = document.querySelectorAll('.task-delete-btn');
+            const unckAllTasksBtn = document.querySelector('#reset-tasks-btn');
+            const delAllTasksBtn = document.querySelector('#clear-all-btn');
+            
+
+            unckAllTasksBtn.addEventListener('click', unckAllTasksHandler);
+            delAllTasksBtn.addEventListener('click', delAllTasksHandler);
+            
 
             for (let i = 0; i < editTaskbtn.length; i++) {
                 editTaskbtn[i].addEventListener('click', editTaskHandler);
@@ -198,7 +243,7 @@ const editTaskHandler = event => {
     document.location.replace(`/edit-task?id=${taskId}`);
 };
 
-const rmvTaskHandler = () => {  
+const rmvTaskHandler = event => {  
     const target = event.target.id;
     const idArr = target.split('d');
     const taskId = idArr[1];
@@ -231,7 +276,6 @@ const addTaskHandler = () => {
     const newTask = document.querySelector('input[id="new-task-input"]');
     setTimeout(() => {
         if (newTask.value !== '') {
-            // const addTask = 
             fetch('/api/tasks', {
                 method: 'POST',
                 body: JSON.stringify({
@@ -312,6 +356,3 @@ const unckAllTasksHandler = () => {
 fetchChecklists();
 
 listGroup.addEventListener('click', grabId);
-addTaskBtn.addEventListener('click', addTaskHandler);
-unckAllTasksBtn.addEventListener('click', unckAllTasksHandler);
-delAllTasksBtn.addEventListener('click', delAllTasksHandler);
