@@ -1,34 +1,33 @@
 const nameUser = document.querySelector('.user-name').textContent.trim();
 const taskContainerEl = document.querySelector('.task-container');
 const taskItemEl = document.querySelector('task-item');
+const listGroup = document.querySelector('.list-group');
 
 // declaring global variables
 let id = '';
 let container;
+let imgEdit;
+let imgDel;
 const checklistArr = [];
 const taskArr = [];
 
 const grabId = event => {
-    if (container !== undefined) {
-        container.remove();
-    }
-    
-    const target = event.target;
-    const targetId = target.getAttribute('id');
-    const idArr = targetId.split('t');
+    const target = event.target.id;
+    const idArr = target.split('t');
     id = idArr[1];    
 
     // checklistArr.unshift(checklistArr[(id - 1)]);
     // console.log(checklistArr)
 
-
-
     fetchChecklists(id);
-
 };
 
 
-const fetchChecklists = () => {    
+const fetchChecklists = () => {   
+    if (container !== undefined) {
+        container.remove();
+    }
+    
     if (id === '') {
         const checklistApiUrl = 'http://localhost:3333/api/checklists/';
 
@@ -72,7 +71,6 @@ const fetchChecklists = () => {
         .then(checklistData => {
             // store current checklist name
             const checklistName = checklistData.checklist_name;   
-
             // call function and pass in data
             displayChecklist(checklistName);
             displayTasks(checklistData);
@@ -101,10 +99,9 @@ const displayTasks = (data) => {
 
     divContainer.appendChild(container);
 
-
+    // loop to display tasks
     for (i = 0; i < data.tasks.length; i++) {
-                
-        
+           
         const taskEl = document.createElement('div');
         taskEl.className = 'row task';      
 
@@ -160,24 +157,57 @@ const displayTasks = (data) => {
         divEditDel.appendChild(divBtnEdit);
         divEditDel.appendChild(divBtnDel);
 
-        const imgEdit = document.createElement('img');
-        imgEdit.setAttribute('id', 'task-edit-btn');
+        imgEdit = document.createElement('img');
+        imgEdit.className = 'task-edit-btn';
         imgEdit.setAttribute('src', './images/edit.svg');
         imgEdit.setAttribute('alt', 'edit button');
+        imgEdit.setAttribute('id', 'id' + data.tasks[i].id)
 
         divBtnEdit.appendChild(imgEdit);
 
-        const imgDel = document.createElement('img');
-        imgDel.setAttribute('id', 'task-delete-btn');
+        imgDel = document.createElement('img');
+        imgDel.className = 'task-delete-btn';
         imgDel.setAttribute('src', './images/minus.svg');
         imgDel.setAttribute('alt', 'delete button');
+        imgDel.setAttribute('id', 'id' + data.tasks[i].id);
 
         divBtnDel.appendChild(imgDel);
     }
+
+    if (data.tasks.length !== 0) {
+        setTimeout(() => {
+            const editTaskbtn = document.querySelectorAll('.task-edit-btn');
+            const rmvTaskbtn = document.querySelectorAll('.task-delete-btn');
+
+            for (let i = 0; i < editTaskbtn.length; i++) {
+                editTaskbtn[i].addEventListener('click', editTaskHandler);
+                rmvTaskbtn[i].addEventListener('click', rmvTaskHandler);
+            }
+                        
+        }, 1000);
+    }
 };
 
+const editTaskHandler = event => {
+    const target = event.target.id;
+    const idArr = target.split('d');
+    const taskId = idArr[1];
 
+    document.location.replace(`/edit-task?${taskId}`);
+};
+
+const rmvTaskHandler = () => {  
+    const target = event.target.id;
+    const idArr = target.split('d');
+    const taskId = idArr[1];
+
+    fetch(`/api/tasks/${taskId}`, {
+        method: 'DELETE'
+    });
+
+    fetchChecklists(id);
+};
 
 fetchChecklists();
 
-document.querySelector('.list-group').addEventListener('click', grabId);
+listGroup.addEventListener('click', grabId);

@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
             {
                 // include task model
                 model: Task,
-                attributes: ['name', 'completion', 'due_date'],
+                attributes: ['id', 'name', 'completion', 'due_date'],
                 order: [['id', 'ASC']]
             },
             {
@@ -41,7 +41,7 @@ router.get('/:id', (req, res) => {
             {
                 // include task model
                 model: Task,
-                attributes: ['name', 'completion', 'due_date'],
+                attributes: ['id', 'name', 'completion', 'due_date'],
                 order: [['id', 'ASC']]
             },
             {
