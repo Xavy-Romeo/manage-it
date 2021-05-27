@@ -2,6 +2,7 @@ const nameUser = document.querySelector('.user-name').textContent.trim();
 const taskContainerEl = document.querySelector('.task-container');
 const taskItemEl = document.querySelector('task-item');
 const listGroup = document.querySelector('.list-group');
+const addTaskBtn = document.querySelector('#add-new-task-btn');
 
 // declaring global variables
 let id = '';
@@ -21,7 +22,6 @@ const grabId = event => {
 
     fetchChecklists(id);
 };
-
 
 const fetchChecklists = () => {   
     if (container !== undefined) {
@@ -183,8 +183,8 @@ const displayTasks = (data) => {
                 editTaskbtn[i].addEventListener('click', editTaskHandler);
                 rmvTaskbtn[i].addEventListener('click', rmvTaskHandler);
             }
-                        
-        }, 1000);
+                  
+        }, 100);
     }
 };
 
@@ -205,9 +205,66 @@ const rmvTaskHandler = () => {
         method: 'DELETE'
     });
 
-    fetchChecklists(id);
+    location.reload();
 };
+
+const addTaskHandler = () => {
+    if (id === '') {
+        const checklistApiUrl = 'http://localhost:3333/api/checklists/';
+
+        // fetch checklist data
+        fetch(checklistApiUrl)
+        .then(checklistData => {
+            // return data in json format
+            return checklistData.json();
+        })
+        .then(checklistData => {
+            id = checklistData[0].id;
+            console.log(checklistData);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
+
+    const newTask = document.querySelector('input[id="new-task-input"]');
+    setTimeout(() => {
+        if (newTask.value !== '') {
+            // const addTask = 
+            fetch('/api/tasks', {
+                method: 'POST',
+                body: JSON.stringify({
+                    checklist_id: id,
+                    name: newTask.value
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            location.reload();
+        } 
+    }, 100);
+    
+};
+
+const f = () => {
+
+}
+
+
+
+
+
+
+
+
+
+
+// write a function to check if id = ''... then set id
+
 
 fetchChecklists();
 
 listGroup.addEventListener('click', grabId);
+addTaskBtn.addEventListener('click', addTaskHandler);
