@@ -6,7 +6,7 @@
 Manage mundane repetitve tasks quickly and easily. Send reminders via text to yourself or others. Manage it is a simple, barebones checklist application that lets you create checklists and edit it to your desires. Additionally, there is a functionality to send a text at a scheduled time for the task of your choosing.
 
 ## Deployment Link
-
+https://cryptic-bastion-04157.herokuapp.com/
 
 ## Table of Contents
 * [Installation](#installation)
