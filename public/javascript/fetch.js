@@ -128,6 +128,26 @@ const displayChecklist = checklistName => {
     listName.textContent = checklistName;
 };
 
+function delayJavascript() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+          resolve('javascript loaded');
+        }, 250);
+      });
+}
+
+async function reloadEventListener() {
+    console.log('loading javascript');
+    const result = await delayJavascript();
+    $('.date-modal-btn').click(function(e) {
+        console.log('get task data summoned')
+    
+        // get the task data name
+        mostRecentTask = $(this).parent().next().find('p').html();  //.closest('.task-item').html();
+    })
+    console.log(result);
+}
+
 const displayTasks = (data) => {
     const random = Math.random();
 
@@ -233,6 +253,8 @@ const displayTasks = (data) => {
                   
         }, 100);
     }
+
+    reloadEventListener();
 };
 
 const editTaskHandler = event => {
