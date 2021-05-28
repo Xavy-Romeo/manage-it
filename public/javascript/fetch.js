@@ -89,7 +89,8 @@ const fetchChecklists = () => {
                 });
 
                 // refresh page
-                location.reload();
+                setTimeout(function(){location.reload();}, 250);
+                
             }
         })
         .catch(err => {
@@ -296,7 +297,7 @@ const rmvTaskHandler = event => {
         method: 'DELETE'
     });
 
-    location.reload();
+    setTimeout(function(){location.reload();}, 250);
 };
 
 // addTaskHandler function
@@ -339,7 +340,7 @@ const addTaskHandler = () => {
 
             location.reload();
         } 
-    }, 100);
+    }, 200);
     
 };
 
@@ -379,12 +380,12 @@ const delAllTasksHandler = () => {
 
             setTimeout(() => {
                 location.reload();
-            }, 100);
+            }, 200);
         })
         .catch(err => {
             console.log(err);
         });
-    }, 50);
+    }, 200);
     
 };
 

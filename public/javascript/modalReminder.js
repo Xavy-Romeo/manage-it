@@ -1,6 +1,6 @@
 let mostRecentTask = '';
 
-function delayJavascript() {
+function delayJavascriptInitial() {
     return new Promise(resolve => {
         setTimeout(() => {
           resolve('javascript loaded');
@@ -10,7 +10,7 @@ function delayJavascript() {
 
 async function asyncCall() {
     console.log('loading javascript');
-    const result = await delayJavascript();
+    const result = await delayJavascriptInitial();
     $('.date-modal-btn').click(function(e) {
         console.log('get task data summoned')
     
