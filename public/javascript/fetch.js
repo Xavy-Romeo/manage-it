@@ -125,6 +125,28 @@ const displayChecklist = checklistName => {
     listName.textContent = checklistName;
 };
 
+// delayJavascript function
+const delayJavascript = () => {
+    return new Promise(resolve => {
+        setTimeout(() => {
+          resolve('javascript loaded');
+        }, 250);
+      });
+}
+
+// reloadEventListener function
+async function reloadEventListener() {
+    console.log('loading javascript');
+    const result = await delayJavascript();
+    $('.date-modal-btn').click(function(e) {
+        console.log('get task data summoned')
+    
+        // get the task data name
+        mostRecentTask = $(this).parent().next().find('p').html();
+    })
+    console.log(result);
+}
+
 // displayTasks function
 const displayTasks = (data) => {
     // create random variable
@@ -237,6 +259,8 @@ const displayTasks = (data) => {
                   
         }, 100);
     }
+
+    reloadEventListener();
 };
 
 // editTaskHandler function

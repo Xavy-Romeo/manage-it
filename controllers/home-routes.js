@@ -55,7 +55,7 @@ router.get('/add-new', (req, res) => {
 })
 
 // edit task page
-router.get('/edit-task?id=:id', (req, res) => {
+router.get('/edit-task?', (req, res) => {
 
     res.render('edit-task');
 })
