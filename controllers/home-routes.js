@@ -22,7 +22,8 @@ router.get('/', withAuth, (req, res) => {
             }
         ]
     })
-    .then(dbChecklistData => {        
+    .then(dbChecklistData => {
+
         // serialize data before passing to template
         const checklists = dbChecklistData.map(checklist => checklist.get({plain: true}));
         res.render('dashboard', {checklists, loggedIn: req.session.loggedIn});

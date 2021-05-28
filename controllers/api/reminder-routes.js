@@ -8,6 +8,7 @@ router.post('/', (req,res) => {
     // expects {email: 'lernantino@gmail.com', password: 'password1234'}
     Task.findOne({
         where: {
+            // hardcoded currently, but allows for future development in automation.
             id: 1
         }
     }) .then(dbTaskData => {
@@ -16,6 +17,7 @@ router.post('/', (req,res) => {
             return;
         }
 
+        // obtain variables to be put in the schedule reminder
         let minTest = req.body.minute;
         let hourTest = req.body.hour;
         let dayNumTest = req.body.dayNum;
@@ -24,6 +26,7 @@ router.post('/', (req,res) => {
         let clientNumber = req.body.clientNumber;
         let timezone = req.body.timezone;
 
+        // function to send reminder to via model
         dbTaskData.scheduleReminder(minTest, hourTest, dayNumTest, monthTest, messageTest, clientNumber, timezone)
         console.log(dbTaskData);
 

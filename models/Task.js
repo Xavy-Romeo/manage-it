@@ -28,6 +28,7 @@ Task.init(
         autoIncrement: true,
         allowNull: false
       },
+      // task will just be attached to the checklist, not the user... keeps things simpler
       checklist_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
