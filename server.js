@@ -3,7 +3,7 @@ const express = require('express');
 const exphbs  = require('express-handlebars');
 const session = require('express-session');
 const path = require('path');
-const routes = require('./controllers');
+const controllers = require('./controllers');
 const cors = require('cors');
 
 // instantiate the server
@@ -40,8 +40,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// use routes
-app.use(routes);
+// use controllers
+app.use(controllers);
 
 app.use(cors());
 

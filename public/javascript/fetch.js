@@ -11,23 +11,27 @@ let imgDel;
 const checklistArr = [];
 const taskArr = [];
 
+// grabId function
 const grabId = event => {
+    // grab id of target
     const target = event.target.id;
     const idArr = target.split('t');
     id = idArr[1];    
 
-    // checklistArr.unshift(checklistArr[(id - 1)]);
-    // console.log(checklistArr)
-
+    // call function and pass in id
     fetchChecklists(id);
 };
 
-const fetchChecklists = () => {   
+// fetchChecklists function
+const fetchChecklists = () => {
+    // if container element was previously populated, then remove   
     if (container !== undefined) {
         container.remove();
     }
     
+    // id = '' (on load)
     if (id === '') {
+        // set api url
         const checklistApiUrl = 'http://localhost:3333/api/checklists/';
 
         // fetch checklist data
@@ -37,26 +41,33 @@ const fetchChecklists = () => {
             return checklistData.json();
         })
         .then(checklistData => {
-            const username = nameUser.split("'");
+            // split name element from sidebar
+            username = nameUser.split("'");
+            // grab name as result of split
             const user = username[0];
+
+            // get length of array
             const dataLength = checklistData.length;
 
+            // loop to push user's checklist into personal array
             for (i = 0; i < dataLength; i++) {
                 if (checklistData[i].user.name === user) {
                     checklistArr.push(checklistData[i]);
                 }
             }
 
-    
+            // check if user has checklists
             if (checklistArr.length !== 0) {
                 // store current checklist values
                 const checklistName = checklistArr[0].checklist_name;  
 
-                // call function and pass in data
+                // call functions
                 displayChecklist(checklistName);
                 displayTasks(checklistArr[0]);
             }
+            // if no checklists for that user (new user/deleted all checklists)
             else {
+                // create new checklist via post request
                 fetch('/api/checklists', {
                     method: 'POST',
                     body: JSON.stringify({
@@ -66,36 +77,18 @@ const fetchChecklists = () => {
                         'Content-Type': 'application/json'
                     }
                 });
-
+                
+                // refresh page
                 location.reload();
             }
-
-
-
-
-            // fetch('/api/tasks', {
-            //     method: 'POST',
-            //     body: JSON.stringify({
-            //         checklist_id: id,
-            //         name: newTask.value
-            //     }),
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     }
-            // });
-
-            // location.reload();
-
-
-
-
-
         })
         .catch(err => {
             console.log(err);
         });
     }
+    // if have id
     else {
+        // api url
         const checklistApiUrl = `http://localhost:3333/api/checklists/${id}`;
 
         // fetch checklist data
@@ -107,7 +100,7 @@ const fetchChecklists = () => {
         .then(checklistData => {
             // store current checklist name
             const checklistName = checklistData.checklist_name;   
-            // call function and pass in data
+            // call functions
             displayChecklist(checklistName);
             displayTasks(checklistData);
         })
@@ -116,19 +109,24 @@ const fetchChecklists = () => {
         });
     }
 
+    // timeout to give fetch time to complete
     setTimeout(() => {
         const addTaskBtn = document.querySelector('#add-new-task-btn');
         addTaskBtn.addEventListener('click', addTaskHandler);
     }, 100);
 };
 
+// displayChecklist function
 const displayChecklist = checklistName => {
+    // grab element
     const listName = document.querySelector('#list-name-header');
     
+    // give element textcontent
     listName.textContent = checklistName;
 };
 
-function delayJavascript() {
+// delayJavascript function
+const delayJavascript = () => {
     return new Promise(resolve => {
         setTimeout(() => {
           resolve('javascript loaded');
@@ -136,6 +134,7 @@ function delayJavascript() {
       });
 }
 
+// reloadEventListener function
 async function reloadEventListener() {
     console.log('loading javascript');
     const result = await delayJavascript();
@@ -143,14 +142,18 @@ async function reloadEventListener() {
         console.log('get task data summoned')
     
         // get the task data name
-        mostRecentTask = $(this).parent().next().find('p').html();  //.closest('.task-item').html();
+        mostRecentTask = $(this).parent().next().find('p').html();
     })
     console.log(result);
 }
 
+// displayTasks function
 const displayTasks = (data) => {
+    // create random variable
     const random = Math.random();
 
+    // dinamically generate task elements in divContainer
+    
     const divContainer = document.querySelector('.container-holder');
 
     container = document.createElement('div');
@@ -234,18 +237,21 @@ const displayTasks = (data) => {
         divBtnDel.appendChild(imgDel);
     }
 
+    // if checklist has at least 1 task
     if (data.tasks.length !== 0) {
+        // set timeout to give dinamically generate elements to load
         setTimeout(() => {
+            // grab elements
             const editTaskbtn = document.querySelectorAll('.task-edit-btn');
             const rmvTaskbtn = document.querySelectorAll('.task-delete-btn');
             const unckAllTasksBtn = document.querySelector('#reset-tasks-btn');
             const delAllTasksBtn = document.querySelector('#clear-all-btn');
             
-
+            // create event listeners
             unckAllTasksBtn.addEventListener('click', unckAllTasksHandler);
             delAllTasksBtn.addEventListener('click', delAllTasksHandler);
             
-
+            // loop to give each button a listener
             for (let i = 0; i < editTaskbtn.length; i++) {
                 editTaskbtn[i].addEventListener('click', editTaskHandler);
                 rmvTaskbtn[i].addEventListener('click', rmvTaskHandler);
@@ -257,19 +263,26 @@ const displayTasks = (data) => {
     reloadEventListener();
 };
 
+// editTaskHandler function
 const editTaskHandler = event => {
+    // grab target id
     const target = event.target.id;
+    // split to grab id
     const idArr = target.split('d');
+    // id located in index 1
     const taskId = idArr[1];
 
+    // document.location.replace('/edit-task')
     document.location.replace(`/edit-task?id=${taskId}`);
 };
 
+// rmvTaskHandler function
 const rmvTaskHandler = event => {  
     const target = event.target.id;
     const idArr = target.split('d');
     const taskId = idArr[1];
 
+    // remove task via delete method
     fetch(`/api/tasks/${taskId}`, {
         method: 'DELETE'
     });
@@ -277,6 +290,7 @@ const rmvTaskHandler = event => {
     location.reload();
 };
 
+// addTaskHandler function
 const addTaskHandler = () => {
     if (id === '') {
         const checklistApiUrl = 'http://localhost:3333/api/checklists/';
@@ -295,9 +309,14 @@ const addTaskHandler = () => {
         });
     }
 
+    // grab input 
     const newTask = document.querySelector('input[id="new-task-input"]');
+    
+    // set timeout to allow fetch to complete
     setTimeout(() => {
+        // if user inputed a value
         if (newTask.value !== '') {
+            // add task via post request
             fetch('/api/tasks', {
                 method: 'POST',
                 body: JSON.stringify({
@@ -315,6 +334,7 @@ const addTaskHandler = () => {
     
 };
 
+// delAllTasksHandler function
 const delAllTasksHandler = () => {
     if (id === '') {
         const checklistApiUrl = 'http://localhost:3333/api/checklists/';
@@ -333,6 +353,7 @@ const delAllTasksHandler = () => {
         });
     }
 
+    // set timeout to allow fetch request to complete
     setTimeout(() => {
         const checklistApiUrl = `http://localhost:3333/api/checklists/${id}`;
         fetch(checklistApiUrl)
@@ -340,6 +361,7 @@ const delAllTasksHandler = () => {
             return checklistData.json();
         })
         .then(checklistData => {
+            // for loop to delete all tasks in checklist
             for (let i = 0; i < checklistData.tasks.length; i++) {
                 fetch(`/api/tasks/${checklistData.tasks[i].id}`, {
                     method: 'DELETE'
@@ -357,24 +379,19 @@ const delAllTasksHandler = () => {
     
 };
 
+// unckAllTasksHandler function
 const unckAllTasksHandler = () => {
+    // grab element
     const allCheckboxes = document.querySelectorAll('.complete-checkbox');
 
+    // loop to set all tasks checkboxes to false (uncheck)
     for (let i = 0; i < allCheckboxes.length; i++) {
         allCheckboxes[i].checked = false;
     }
 };
 
-
-
-
-
-
-
-
-// write a function to check if id = ''... then set id
-
-
+// function call starts script
 fetchChecklists();
 
+// eventlistener
 listGroup.addEventListener('click', grabId);
