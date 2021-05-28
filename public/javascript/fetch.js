@@ -99,7 +99,7 @@ const fetchChecklists = () => {
     // if have id
     else {
         // api url
-        const checklistApiUrl = `http://localhost:3333/api/checklists/${id}`;
+        const checklistApiUrl = `/api/checklists/${id}`;
 
         // fetch checklist data
         fetch(checklistApiUrl)
@@ -302,7 +302,7 @@ const rmvTaskHandler = event => {
 // addTaskHandler function
 const addTaskHandler = () => {
     if (id === '') {
-        const checklistApiUrl = 'http://localhost:3333/api/checklists/';
+        const checklistApiUrl = '/api/checklists/';
 
         // fetch checklist data
         fetch(checklistApiUrl)
@@ -346,7 +346,7 @@ const addTaskHandler = () => {
 // delAllTasksHandler function
 const delAllTasksHandler = () => {
     if (id === '') {
-        const checklistApiUrl = 'http://localhost:3333/api/checklists/';
+        const checklistApiUrl = '/api/checklists/';
 
         // fetch checklist data
         fetch(checklistApiUrl)
@@ -364,7 +364,7 @@ const delAllTasksHandler = () => {
 
     // set timeout to allow fetch request to complete
     setTimeout(() => {
-        const checklistApiUrl = `http://localhost:3333/api/checklists/${id}`;
+        const checklistApiUrl = `/api/checklists/${id}`;
         fetch(checklistApiUrl)
         .then(checklistData => {
             return checklistData.json();
