@@ -32,7 +32,7 @@ const fetchChecklists = () => {
     // id = '' (on load)
     if (id === '') {
         // set api url
-        const checklistApiUrl = 'http://localhost:3333/api/checklists/';
+        const checklistApiUrl = '/api/checklists/';
 
         // fetch checklist data
         fetch(checklistApiUrl)
