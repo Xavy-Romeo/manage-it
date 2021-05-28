@@ -76,8 +76,18 @@ const fetchChecklists = () => {
                     headers: {
                         'Content-Type': 'application/json'
                     }
+                })
+                .then(checklistData => {
+                    return checklistData.json();
+                })
+                .then(checklistData => {
+                    console.log(checklistData);
+                    id = checklistData.id;
+                })
+                .catch(err => {
+                    console.log(err);
                 });
-                
+
                 // refresh page
                 location.reload();
             }
