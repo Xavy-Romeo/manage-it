@@ -139,14 +139,13 @@ const displayChecklist = checklistName => {
 const delayJavascript = () => {
     return new Promise(resolve => {
         setTimeout(() => {
-          resolve('javascript loaded');
+          resolve('');
         }, 250);
       });
 }
 
 // reloadEventListener function
 async function reloadEventListener() {
-    console.log('loading javascript');
     const result = await delayJavascript();
     $('.date-modal-btn').click(function(e) {
         console.log('get task data summoned')
