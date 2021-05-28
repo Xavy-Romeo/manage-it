@@ -208,7 +208,7 @@ const displayTasks = (data) => {
         btnDate.setAttribute('type', 'button');
         btnDate.setAttribute('data-toggle', 'modal');
         btnDate.setAttribute('data-target', '#dueDateModal');
-        btnDate.textContent = 'Due Date';
+        btnDate.textContent = 'Reminder';
 
         divDue.appendChild(btnDate);
 
