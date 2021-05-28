@@ -26,9 +26,6 @@ router.get('/', withAuth, (req, res) => {
         ]
     })
     .then(dbChecklistData => {
-        // cron.schedule('* * * * *', () => {
-        //     console.log('Make a call to twilio');
-        // });
         const checklists = dbChecklistData.map(checklist => checklist.get({plain: true}));
         console.log(checklists);
         res.render('dashboard', {checklists, loggedIn: true});

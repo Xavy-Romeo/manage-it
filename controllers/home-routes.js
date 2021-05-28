@@ -23,10 +23,7 @@ router.get('/', withAuth, (req, res) => {
         ]
     })
     .then(dbChecklistData => {
-        // cron.schedule('* * * * *', () => {
-        //     console.log('Make a call to twilio');
-        // });
-        
+
         // serialize data before passing to template
         const checklists = dbChecklistData.map(checklist => checklist.get({plain: true}));
         res.render('dashboard', {checklists, loggedIn: req.session.loggedIn});
