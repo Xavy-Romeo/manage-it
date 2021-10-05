@@ -11,7 +11,7 @@ function sendMessage(message, clientNumber){
     client.messages.create({
         body: message,
         to: clientNumber,  // Text this number
-        from: '+18548886012' // From a valid Twilio number
+        from: '+13156751702' // From a valid Twilio number
     })
     .then((message) => console.log(message.sid));
 }
